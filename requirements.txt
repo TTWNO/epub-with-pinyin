@@ -1,0 +1,4 @@
+https://github.com/TTWNO/dragonmapper
+python(3)-pynlpir
+python(3)-bs4
+python(3)-ebooklib
