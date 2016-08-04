@@ -2,10 +2,10 @@
 Adds Pinyin to .epub files
 
 # Requirements
-*<'https://github.com/TTWNO/dragonmapper'>
-*BeautifulSoup4
-*<'https://github.com/tsroten/pynlpir'>
-*python(3) ebooklib
+* <'https://github.com/TTWNO/dragonmapper' develop branch>
+* BeautifulSoup4
+* <'https://github.com/tsroten/pynlpir'>
+* python(3) ebooklib
 
 # Usage:
 
