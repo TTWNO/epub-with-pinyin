@@ -12,7 +12,7 @@ import sys
 import os
 
 # Change These #
-debug_is_on = True
+debug_is_on = False
 numbered_pinyin = False
 
 # \Change These #
