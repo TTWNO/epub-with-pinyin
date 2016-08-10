@@ -23,6 +23,6 @@ zip -r -q "../../$filename-with-pinyin.epub" *
 cd ../..
 echo "Done...Cleanup now."
 
-#rm -r "$filename-with-pinyin" "$filename"
+rm -r "$filename-with-pinyin" "$filename"
 echo "Done cleaning."
 echo "Done."
