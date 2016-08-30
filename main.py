@@ -28,7 +28,7 @@ EPUB_BLACKLIST_KEYWORDS = ['pagenav']
 GET_TAG_NAMES = ['p', 'strong', 'h1',
                     'h2', 'h3', 'h4',
                     'h5', 'h6', 'i',
-                    'b', 'u']
+                    'b', 'u', 'a']
 
 def is_entirely_chinese(s):
     debug('TEST(IEC): '+str(s))
