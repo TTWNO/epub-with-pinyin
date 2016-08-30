@@ -1,5 +1,8 @@
 # epub-pinyin
-Adds Pinyin to .epub files
+Adds Chinese phonetic scripts to .epub files
+
+* Pinyin
+* Jyutping (comming soon)
 
 # Requirements
 * https://github.com/TTWNO/dragonmapper develop branch>
