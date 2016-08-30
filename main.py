@@ -15,6 +15,8 @@ import os
 debug_is_on = False
 numbered_pinyin = False
 
+dict_file = './dict.txt.big'
+
 # \Change These #
 
 FULL_FILE_NAME = sys.argv[1]
@@ -28,12 +30,6 @@ GET_TAG_NAMES = ['p', 'strong', 'h1',
                     'h5', 'h6', 'i',
                     'b', 'u']
 
-BLACKLISTED_CHARS = ('０', '１', '２', '３', '４',
-                        '５', '６', '７', '８', '９', '\\u200b',
-                        '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                        '-', '1')
-
-
 def is_entirely_chinese(s):
     debug('TEST(IEC): '+str(s))
     for c in s:
@@ -41,16 +37,6 @@ def is_entirely_chinese(s):
             debug('TEST(IEC): '+c+' is not chinese.')
             return False
     return True
-
-
-def has_backlisted_character(s):
-    for c in BLACKLISTED_CHARS:
-        if c in s:
-            debug('{0} in {1}'.format(c, s))
-            return True
-    debug('{0} not in {1}'.format(str(BLACKLISTED_CHARS), s))
-    return False
-
 
 def debug(s):
     if debug_is_on:
@@ -134,12 +120,12 @@ def get_pinyin_bs(fn):
         debug("#######{0}#######".format(p_text))
         # pos_tagging will give you the type of word
         # unneccesary in this case
-        words = [word for word in " ".join(jieba.cut(p_text, cut_all=False)).split(' ')]
+        words = [word for word in " ".join(jieba.cut(p_text)).split(' ')]
         debug("WORDS: {0}".format(words))
         for word in words:
             debug("{0} : {1}".format(word, str(p_el)))
             debug('CHARACTER: {0}'.format(word))
-            if not is_entirely_chinese(word) or has_backlisted_character(word):
+            if not is_entirely_chinese(word):
                 pi = (' '*len(word)).split(' ')
             else:
                 zh = hanzi.to_zhuyin(word)
@@ -156,6 +142,7 @@ def get_pinyin_bs(fn):
 
 files = find_epub_files(FILE_NAME)
 debug(files)
+jieba.load_userdict(dict_file)
 total_files = 0
 current_file_num = 1
 for fn in files:
