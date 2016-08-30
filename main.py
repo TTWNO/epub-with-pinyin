@@ -6,7 +6,7 @@ from dragonmapper import html
 import hanzidentifier as ziid
 from bs4 import BeautifulSoup
 from ebooklib import epub
-import pynlpir
+import jieba
 import bs4
 import sys
 import os
@@ -134,7 +134,7 @@ def get_pinyin_bs(fn):
         debug("#######{0}#######".format(p_text))
         # pos_tagging will give you the type of word
         # unneccesary in this case
-        words = pynlpir.segment(p_text, pos_tagging=False)
+        words = [word for word in " ".join(jieba.cut(p_text, cut_all=False)).split(' ')]
         debug("WORDS: {0}".format(words))
         for word in words:
             debug("{0} : {1}".format(word, str(p_el)))
@@ -156,7 +156,6 @@ def get_pinyin_bs(fn):
 
 files = find_epub_files(FILE_NAME)
 debug(files)
-pynlpir.open(encoding_errors='strict')
 total_files = 0
 current_file_num = 1
 for fn in files:
@@ -171,4 +170,3 @@ for fn in files:
         new_f.write(new_text)
         new_f.close()
         current_file_num += 1
-pynlpir.close()
