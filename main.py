@@ -120,7 +120,7 @@ def get_pinyin_bs(fn):
         debug("#######{0}#######".format(p_text))
         # pos_tagging will give you the type of word
         # unneccesary in this case
-        words = [word for word in " ".join(jieba.cut(p_text)).split(' ')]
+        words = [word for word in jieba.cut(p_text)]
         debug("WORDS: {0}".format(words))
         for word in words:
             debug("{0} : {1}".format(word, str(p_el)))
