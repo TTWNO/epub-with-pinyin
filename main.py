@@ -146,6 +146,17 @@ def generate_new_html_for_words(words):
     return words_with_pinyin_html
 
 
+def add_js_link(bs_file):
+    """
+    Return file w/ link to js/functions.js file.
+
+    *bs_file* Beautiful Soup file object.
+    """
+    js_link = bs_file.new_tag("script", type="text/javascript", src="./js/functions.js")
+    bs_file.head.insert(-1, js_link)
+    return bs_file
+
+
 def get_pinyin_bs(file_name):
     """
     Return file + Ruby characters.
@@ -187,7 +198,7 @@ def get_pinyin_bs(file_name):
         debug("Parent Element: " + str(p_el.parent))
         debug("{0} will be replaced by {1}".format(p_el, new_p_str))
         p_el.replace_with(bs.new_string(new_p_str))
-    return str(bs.decode(formatter=None))
+    return str(add_js_link(bs).decode(formatter=None))
 
 
 files = find_epub_files(FILE_NAME)

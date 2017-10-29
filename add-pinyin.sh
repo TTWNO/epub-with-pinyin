@@ -11,6 +11,8 @@ cd ..
 
 mkdir "$filename-with-pinyin"
 cp -r "$filename" "$filename-with-pinyin"
+mkdir "$filename-with-pinyin/$filename/OEBPS/js"
+cp "js/functions.js" "$filename-with-pinyin/$filename/OEBPS/js/"
 
 echo "Starting the python3 program:"
 python3 main.py "$fullfilename"
