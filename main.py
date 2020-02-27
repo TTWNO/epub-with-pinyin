@@ -5,6 +5,7 @@
 import sys
 import html as htmlLib
 import os
+from pathlib import Path
 
 from dragonmapper import transcriptions as trans
 from dragonmapper import hanzi
@@ -45,8 +46,8 @@ def is_entirely_chinese(s):
     debug('TEST(IEC): '+str(s))
     for c in s:
         if not ziid.has_chinese(c):
-            debug('TEST(IEC): '+c+' is not chinese.')
             return False
+            debug('TEST(IEC): '+c+' is not chinese.')
     return True
 
 
@@ -79,7 +80,9 @@ def find_epub_files(f):
 
     *f* epub file no extention
     """
-    all_star_html = []
+    all_star_html = [x for x in Path(f).rglob("*html")]
+    return all_star_html
+    '''
     book = epub.read_epub(f + '.epub')
     for t in book.toc:
         debug(t.href)
@@ -104,7 +107,7 @@ def find_epub_files(f):
         if addExtrFile is not None:
             debug("Adding -extracted file")
             all_star_html.append(addExtrFile)
-    return all_star_html
+    return all_star_html'''
 
 
 def get_all_tags_text(pt):
@@ -201,7 +204,7 @@ def get_pinyin_bs(file_name):
     return str(add_js_link(bs).decode(formatter=None))
 
 
-files = find_epub_files(FILE_NAME)
+files = find_epub_files(NEW_DIR)
 debug(files)
 jieba.load_userdict(dict_file)
 total_files = 0
@@ -217,7 +220,7 @@ for fn in files:
             total_files))
         new_text = get_pinyin_bs(fn)
         debug(new_text)
-        new_f = open("{0}/{1}".format(NEW_DIR, fn), encoding='utf-8', mode='w')
+        new_f = open("{0}".format(fn), encoding='utf-8', mode='w')
         new_f.write(new_text)
         new_f.close()
         current_file_num += 1
