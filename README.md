@@ -5,13 +5,19 @@ Adds Chinese phonetic scripts to .epub files
 * Jyutping (comming soon)
 
 # Requirements
+* [uv](https://docs.astral.sh/uv/)
+
+or
+
 * https://github.com/TTWNO/dragonmapper <develop branch>
 * python(3) beautifulsoup4
 * python(3) jieba
 * python(3) ebooklib
 * python(3) lxml
 
-# Instalation
+# Installation
+
+* If you are using [`uv`](https://docs.astral.sh/uv/), just make sure `uv` is installed and there is nothing else to do.
 
 * If you are on Linux, and are using python3
 

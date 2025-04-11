@@ -1,4 +1,19 @@
 #!/bin/python3.4
+# /// script
+# requires-python = "<3.10"
+# dependencies = [
+#     "beautifulsoup4==4.6.0",
+#     "hanzidentifier==1.2.0",
+#     "dragonmapper",
+#     "ebooklib==0.15",
+#     "jieba==0.38",
+#     "lxml",
+# ]
+# [tool.uv]
+# exclude-newer = "2024-10-06T00:00:00Z"
+# [tool.uv.sources]
+# dragonmapper = { git = "https://github.com/TTWNO/dragonmapper", branch = "develop" }
+# ///
 # -*- coding: utf-8 -*-
 """A Python app that makes epub files with pinyin in them."""
 

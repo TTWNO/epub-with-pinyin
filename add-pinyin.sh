@@ -4,18 +4,22 @@ fullfilename="$1"
 extension="${fullfilename##*.}"
 filename="${fullfilename%.*}"
 
-mkdir "$filename"
+mkdir -p "$filename"
 cd "$filename"
 unzip -q "../$fullfilename"
 cd ..
 
-mkdir "$filename-with-pinyin"
+mkdir -p "$filename-with-pinyin"
 cp -r "$filename" "$filename-with-pinyin"
-mkdir "$filename-with-pinyin/$filename/OEBPS/js" || mkdir "$filename-with-pinyin/$filename/OPS/js" && echo "Alternate path found"
+mkdir -p "$filename-with-pinyin/$filename/OEBPS/js" || mkdir -p "$filename-with-pinyin/$filename/OPS/js" && echo "Alternate path found"
 cp "js/functions.js" "$filename-with-pinyin/$filename/OEBPS/js/" || cp "js/functions.js" "$filename-with-pinyin/$filename/OPS/js/" && echo "Alternate path found"
 
-echo "Starting the python3 program:"
-python3 main.py "$fullfilename"
+echo "Starting the Python program:"
+if command -v uv &> /dev/null; then
+    uv run main.py "$fullfilename"
+else
+    python3 main.py "$fullfilename"
+fi
 
 echo "Creating new epub file"
 cd "$filename-with-pinyin"
